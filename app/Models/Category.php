@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'slug',
+        'status',
+    ];
+
+    protected $rules = [
+        'name' => 'required|max:255',
+        'slug' => 'required|unique:subcategories,slug|max:255',
+        'status' => 'required|in:active,inactive',
+    ];
+
 }
