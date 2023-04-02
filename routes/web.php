@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin/layouts/admin');
 });
 //admin routes
 require base_path('routes/web/admin/auth.php');
