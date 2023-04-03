@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('category_id');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
