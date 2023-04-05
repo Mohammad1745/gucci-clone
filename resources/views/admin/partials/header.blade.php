@@ -8,25 +8,25 @@
                 </a>
                 <div style="padding-bottom: 20px"></div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('showAddCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Add Category
-                    </button>
+                    </a>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('allCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         All Category
-                    </button>
+                    </a>
                 </div>
                 <div style="padding-bottom: 20px"></div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('addSubCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Add Sub Category
-                    </button>
+                    </a>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('allSubCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         All Sub Category
-                    </button>
+                    </a>
                 </div>
                 <div style="padding-bottom: 20px"></div>
                 <div class="btn-group">

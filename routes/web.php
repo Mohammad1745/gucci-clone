@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin/layouts/admin');
-});
+
 //admin routes
 require base_path('routes/web/admin/auth.php');
 require base_path('routes/web/admin/dashboard.php');

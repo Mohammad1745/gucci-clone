@@ -11,11 +11,13 @@ class Category extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
         'status',
     ];
 
     protected $rules = [
         'name' => 'required|max:255',
+        'description' => 'nullable',
         'slug' => 'required|unique:subcategories,slug|max:255',
         'status' => 'required|in:active,inactive',
     ];
