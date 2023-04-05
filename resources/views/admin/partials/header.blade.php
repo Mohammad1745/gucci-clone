@@ -41,14 +41,14 @@
                 </div>
                 <div style="padding-bottom: 20px"></div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('currentOrder')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Current Order
-                    </button>
+                    </a>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('completedOrder')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Completed Order
-                    </button>
+                    </a>
                 </div>
 
             </div>

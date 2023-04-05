@@ -35,4 +35,12 @@ class DashboardController extends Controller
     {
         return view('admin/dashboard/allSubCategory');
     }
+    public function currentOrder()
+    {
+        return view('admin/dashboard/currentOrder');
+    }
+    public function completedOrder()
+    {
+        return view('admin/dashboard/completedOrder');
+    }
 }
