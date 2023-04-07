@@ -16,31 +16,24 @@ class DashboardController extends Controller
     }
     public function showAddCategory()
     {
-        return view('admin/dashboard/addCategory');
-    }
-
-    /**
-     * @return Application|Factory|View|\Illuminate\Foundation\Application
-     */
-    public function allCategory()
-    {
-        return view('admin/dashboard/allCategory');
+        return view('admin/dashboard/category/addCategory');
     }
 
     public function addSubCategory()
     {
-        return view('admin/dashboard/addSubCategory');
+        return view('admin/dashboard/subCategory/addSubCategory');
     }
     public function allSubCategory()
     {
-        return view('admin/dashboard/allSubCategory');
+        return view('admin/dashboard/subCategory/allSubCategory');
     }
     public function currentOrder()
     {
-        return view('admin/dashboard/currentOrder');
+        return view('admin/dashboard/order/currentOrder');
     }
     public function completedOrder()
     {
-        return view('admin/dashboard/completedOrder');
+        return view('admin/dashboard/order/completedOrder');
     }
+
 }

@@ -13,7 +13,7 @@
                     </a>
                 </div>
                 <div class="btn-group">
-                    <a href="{{route('allCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('getAllCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         All Category
                     </a>
                 </div>
