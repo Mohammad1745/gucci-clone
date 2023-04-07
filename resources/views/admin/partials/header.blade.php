@@ -7,11 +7,13 @@
                     <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
                 </a>
                 <div style="padding-bottom: 20px"></div>
+                   <br/>
                 <div class="btn-group">
                     <a href="{{route('showAddCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Add Category
                     </a>
                 </div>
+                   <br/>
                 <div class="btn-group">
                     <a href="{{route('allCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         All Category
@@ -23,28 +25,33 @@
                         Add Sub Category
                     </a>
                 </div>
+                   <br/>
                 <div class="btn-group">
                     <a href="{{route('allSubCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         All Sub Category
                     </a>
                 </div>
+                   <br/>
                 <div style="padding-bottom: 20px"></div>
+                   <br/>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
+                    <a href="{{route('addProduct')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Add Product
-                    </button>
+                    </a>
+
                 </div>
+                 <br/>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-light "  aria-expanded="false">
-                        All Product
-                    </button>
+                    <a href="{{route('allProduct')}}" type="button" class="btn btn-light "  aria-expanded="false"> All Product </a>
                 </div>
+                <br/>
                 <div style="padding-bottom: 20px"></div>
                 <div class="btn-group">
                     <a href="{{route('currentOrder')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Current Order
                     </a>
                 </div>
+                   <br/>
                 <div class="btn-group">
                     <a href="{{route('completedOrder')}}" type="button" class="btn btn-light "  aria-expanded="false">
                         Completed Order

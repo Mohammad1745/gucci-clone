@@ -43,4 +43,12 @@ class DashboardController extends Controller
     {
         return view('admin/dashboard/completedOrder');
     }
+    public function addProduct()
+    {
+        return view('admin/dashboard/addProduct');
+    }
+     public function allProduct()
+        {
+            return view('admin/dashboard/allProduct');
+        }
 }
