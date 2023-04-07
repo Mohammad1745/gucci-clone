@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('description')->nullable();
-            $table->string('slug')->unique();
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('category_name');
+            $table->string('slug');
+            $table->integer('subCategoryCount')->default(0);
+            $table->integer('productCount')->default(0);
         });
     }
 

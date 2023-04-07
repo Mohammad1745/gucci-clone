@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->string('subCategory_name');
+            $table->string('slug');
             $table->unsignedBigInteger('category_id');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('category_name');
+            $table->integer('product_count');
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
