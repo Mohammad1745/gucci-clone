@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('slug');
             $table->unsignedBigInteger('category_id');
             $table->string('category_name');
-            $table->integer('product_count');
+            $table->integer('product_count')->default(0);
             $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }

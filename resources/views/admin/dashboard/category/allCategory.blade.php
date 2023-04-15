@@ -12,11 +12,29 @@
             </ul>
         </div>
     @endif
-
-    <div style="padding: 5vw; justify-content: center">
-        <div>
-            <h5>All Category</h5>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand text-primary" href="#"> <b>ALL CATEGORY </b> </a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarText"
+                aria-controls="navbarText"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0"/>
+                <span class="navbar-text">
+        <a href="{{route('showAddCategory')}}" class="btn btn-info">Add Category</a>
+      </span>
+            </div>
         </div>
+    </nav>
+    <div style="padding: 2vw;">
         <table class="table">
             <thead class="table-dark">
             <tr>

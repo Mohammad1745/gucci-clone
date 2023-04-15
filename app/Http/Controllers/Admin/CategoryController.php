@@ -34,6 +34,7 @@ class CategoryController extends Controller
         return $response['success'] ? redirect()->route('getAllCategory')->with('success', $response['message'])
             :redirect()->back()->with('error',$response['message']);
     }
+
     public function editCategory($id)
     {
         $response=$this->service->editCategory($id);

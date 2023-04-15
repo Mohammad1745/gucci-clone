@@ -21,9 +21,9 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0"/>
       <span class="navbar-text">
-        <button class="btn btn-primary">Add Products</button>
+        <a href="{{route("addProduct")}}" class="btn btn-info">Add Products</a>
       </span>
     </div>
   </div>
@@ -36,7 +36,7 @@
       <div class="container py-5">
 
         <div class="row justify-content-center mb-3">
-      
+
           <div class="col-md-12 col-xl-10">
 
             <div class="card shadow-0 border rounded-3">

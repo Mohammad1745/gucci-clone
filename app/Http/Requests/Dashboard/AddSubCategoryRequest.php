@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddCategoryRequest extends FormRequest
+class AddSubCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class AddCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'subCategory_name' => 'required|unique:subCategories|max:255',
+          'category_id' => 'required|exists:categories,id'
 
-            'category_name' => 'required|unique:categories|max:255',
-            'image' => 'required|image|max:2048',
         ];
     }
 }

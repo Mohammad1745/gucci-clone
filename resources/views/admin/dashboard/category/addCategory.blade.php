@@ -6,7 +6,7 @@
 
     <div style="margin-left: 10vw; margin-top:5vw;justify-content: center">
         <link rel="stylesheet" href="/css/mdb.min.css" />
-    <form action="{{route('storeCategory')}}" method="post">
+    <form action="{{route('storeCategory')}}" method="post" enctype="multipart/form-data">
         @csrf
         <!-- 2 column grid layout with text inputs for the first and last names -->
                 <div>
@@ -19,6 +19,15 @@
         @if (isset($errors) && $errors->has('category_name'))
             <span class="text-danger"><strong>{{ $errors->first('category_name') }}</strong></span>
         @endif
+
+        <div class="form-outline mb-4">
+            <label for="image">Image:</label>
+            <input type="file" name="image" id="image" required accept="image/*">
+            @if (isset($errors) && $errors->has('image'))
+                <span class="text-danger"><strong>{{ $errors->first('image') }}</strong></span>
+            @endif
+        </div>
+
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary ">Add</button>
     </form>

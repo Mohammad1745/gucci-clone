@@ -26,15 +26,13 @@
                         </div>
                         <select class="form-select mb-4">
                             <option selected>select Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                                <option value="1" readonly>{{$subCategory->category_name}}</option>
                         </select>
                         <select class="form-select mb-4">
                             <option selected>select Sub Category</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            @foreach($subCategories as $subCategory)
+                                <option value="">{{$subCategory->subCategory_name}}</option>
+                            @endforeach
                         </select>
 
                     <!-- Message input -->

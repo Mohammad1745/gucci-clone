@@ -19,14 +19,8 @@ class DashboardController extends Controller
         return view('admin/dashboard/category/addCategory');
     }
 
-    public function addSubCategory()
-    {
-        return view('admin/dashboard/subCategory/addSubCategory');
-    }
-    public function allSubCategory()
-    {
-        return view('admin/dashboard/subCategory/allSubCategory');
-    }
+
+
     public function currentOrder()
     {
         return view('admin/dashboard/order/currentOrder');
@@ -37,10 +31,10 @@ class DashboardController extends Controller
     }
     public function addProduct()
     {
-        return view('admin/dashboard/addProduct');
+        return view('admin/dashboard/product/addProduct');
     }
     public function allProduct()
     {
-        return view('admin/dashboard/allProduct');
+        return view('admin/dashboard/product/allProduct');
     }
 }

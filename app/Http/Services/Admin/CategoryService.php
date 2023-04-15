@@ -4,19 +4,23 @@ namespace App\Http\Services\Admin;
 
 use App\Http\Services\Service;
 use App\Models\Category;
-use mysql_xdevapi\Exception;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryService extends Service
 {
     public function storeCategory(array $data)
     {
         try{
+
+            $imagePath = $data['image']->store('public/category_image');
+            $imageUrl = Storage::url($imagePath);
             Category::create([
                 'category_name'=>$data['category_name'],
-                'slug'=>strtolower(str_replace(' ','-',$data['category_name']))
+                'slug'=>strtolower(str_replace(' ','-',$data['category_name'])),
+                'image'=>$imageUrl,
             ]);
             return $this->responseSuccess('Category uploaded');
-        }catch (Exception $exception)
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
@@ -25,11 +29,8 @@ class CategoryService extends Service
     {
         try{
             $data=Category::all();
-
-
-
             return $this->responseSuccess('Category uploaded',['data'=>$data]);
-        }catch (Exception $exception)
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
@@ -39,7 +40,7 @@ class CategoryService extends Service
         try{
             $data=Category::find($id);
             return $this->responseSuccess('Category uploaded',['data'=>$data]);
-        }catch (Exception $exception)
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
@@ -54,7 +55,7 @@ class CategoryService extends Service
         try{
             Category::where('id',$data['id'])->update(['category_name'=>$data['category_name']]);
             return $this->responseSuccess('Category name updated');
-        }catch (Exception $exception)
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
@@ -65,11 +66,10 @@ class CategoryService extends Service
             $category=Category::find($id);
             $category->delete();
             return $this->responseSuccess('Category deleted successfully');
-        }catch (Exception $exception)
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
     }
-
 
 }
