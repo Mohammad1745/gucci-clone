@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Dashboard\AddCategoryRequest;
-use App\Http\Requests\Dashboard\AddSubCategoryRequest;
-use App\Http\Requests\Dashboard\editCategoryRequest;
-use App\Http\Requests\Dashboard\editSubCategoryRequest;
+use App\Http\Requests\Dashboard\addProductRequest;
+use App\Http\Requests\Dashboard\AddSubcategoryRequest;
 use App\Http\Services\Admin\ProductService;
-use App\Http\Services\Admin\SubCategoryService;
 use App\Models\Category;
-use App\Models\Subcategory;
-use http\Env\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
@@ -21,31 +19,43 @@ class ProductController extends Controller
     {
         $this->service=$service;
     }
+
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
     public function addProduct()
     {
 
         $categories=Category::all();
         return view('admin/dashboard/product/addProduct')->with('categories',$categories);
     }
-    public function selectCategory(Request $request)
+
+    /**
+     * @param addProductRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|Factory|View|Application|RedirectResponse
+     */
+    public function storeProduct(addProductRequest $request)
     {
-            $id=$request['category_id'];
-        $subCategories=Subcategory::where('category_id',$id);
-        return view('admin/dashboard/product/addProduct')->with('subCategories',$subCategories);
+        $response=$this->service->storeProduct($request->all());
+        return $response['success'] ?
+            ($response['data']['redirect']?
+                 view('admin/dashboard/product/addProduct',$response['data'])
+                :redirect()->route('allProduct')->with('success', $response['message']))
+            :redirect()->back()->with('error',$response['message']);
     }
-    public function storeSubCategory(AddSubCategoryRequest $request): RedirectResponse
+    public function storeSubcategory(AddSubcategoryRequest $request): RedirectResponse
     {
 
-        $response=$this->service->storeSubCategory($request->all());
-        return $response['success'] ? redirect()->route('allSubCategory')->with('success', $response['message'])
+        $response=$this->service->storeSubcategory($request->all());
+        return $response['success'] ? redirect()->route('allSubcategory')->with('success', $response['message'])
             :redirect()->back()->with('error',$response['message']);
     }
 
-    public function editSubCategory($id)
+    public function editSubcategory($id)
     {
-        $response=$this->service->editSubCategory($id);
+        $response=$this->service->editSubcategory($id);
         $dataResponse=$response['data'];
-        return $response['success'] ?view('admin/dashboard/subCategory/editSubCategory')->with('subCategory',$dataResponse['data'])
+        return $response['success'] ?view('admin/dashboard/subcategory/editSubcategory')->with('subcategory',$dataResponse['data'])
             :redirect()->back()->with('error',$response['message']);
 
     }

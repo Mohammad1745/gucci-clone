@@ -8,40 +8,14 @@ use App\Models\Subcategory;
 use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
 
-class SubCategoryService extends Service
+class SubcategoryService extends Service
 {
-    public function storeCategory(array $data)
-    {
-        try{
-            $imagePath = $data['image']->store('public/category_image');
-            $imageUrl = Storage::url($imagePath);
-            Category::create([
-                'category_name'=>$data['category_name'],
-                'slug'=>strtolower(str_replace(' ','-',$data['category_name'])),
-                'image'=>$imageUrl,
-            ]);
-            return $this->responseSuccess('Category uploaded');
-        }catch (Exception $exception)
-        {
-            return $this->responseError($exception->getMessage());
-        }
-    }
-    public function getAllCategory()
-    {
-        try{
-            $data=Category::all();
-            return $this->responseSuccess('Category uploaded',['data'=>$data]);
-        }catch (Exception $exception)
-        {
-            return $this->responseError($exception->getMessage());
-        }
-    }
-    public function editSubCategory($id): array
+    public function editSubcategory($id): array
     {
         try{
             $data=Subcategory::find($id);
             return $this->responseSuccess('success',['data'=>$data]);
-        }catch (Exception $exception)
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
@@ -51,41 +25,41 @@ class SubCategoryService extends Service
      * @param array $data
      * @return array
      */
-    public function updateSubCategory(array $data): array
+    public function updateSubcategory(array $data): array
     {
         try{
-            Subcategory::where('id',$data['id'])->update(['subCategory_name'=>$data['subCategory_name']]);
-            return $this->responseSuccess('subCategory name updated');
-        }catch (Exception $exception)
+            Subcategory::where('id',$data['id'])->update(['name'=>$data['subcategory_name']]);
+            return $this->responseSuccess('subcategory name updated');
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
     }
-    public function deleteSubCategory($id): array
+    public function deleteSubcategory($id): array
     {
         try{
             $subcategory=Subcategory::find($id);
             $subcategory->delete();
-            return $this->responseSuccess('subCategory deleted successfully');
-        }catch (Exception $exception)
+            return $this->responseSuccess('subcategory deleted successfully');
+        }catch (\Exception $exception)
         {
             return $this->responseError($exception->getMessage());
         }
     }
 //code for subcategory start from here
-    public function storeSubCategory(array $data)
+    public function storeSubcategory(array $data)
     {
         try{
             $category=Category::find($data['category_id']);
-            Category::where('id',$data['category_id'])->update(['subCategoryCount'=>$category->subCategoryCount+1]);
+            Category::where('id',$data['category_id'])->update(['subcategory_count'=>$category->subcategoryCount+1]);
 
-            SubCategory::create([
-                'subCategory_name'=>$data['subCategory_name'],
+            Subcategory::create([
+                'name'=>$data['name'],
                 'category_id'=>$data['category_id'],
-                'category_name'=>$category->category_name,
-                'slug'=>strtolower(str_replace(' ','-',$data['subCategory_name'])),
+                'category_name'=>$category->name,
+                'slug'=>strtolower(str_replace(' ','-',$data['name'])),
             ]);
-            return $this->responseSuccess('SubCategory uploaded');
+            return $this->responseSuccess('Subcategory uploaded');
         }catch (Exception $exception)
         {
             return $this->responseError($exception->getMessage());

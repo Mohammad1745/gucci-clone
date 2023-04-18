@@ -14,11 +14,11 @@
                 </div>
                 <input name="id" type="hidden" value="{{$category->id}}">
                 <div class="form-outline mb-4 col-6">
-                    <input name="category_name" type="text" id="form6Example1" class="form-control" value="{{$category->category_name}}" />
+                    <input name="name" type="text" id="form6Example1" class="form-control" value="{{$category->name}}" />
                     <label class="form-label" for="form6Example1">Name</label>
                 </div>
-        @if (isset($errors) && $errors->has('category_name'))
-            <span class="text-danger"><strong>{{ $errors->first('category_name') }}</strong></span>
+        @if (isset($errors) && $errors->has('name'))
+            <span class="text-danger"><strong>{{ $errors->first('name') }}</strong></span>
         @endif
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary ">Update</button>

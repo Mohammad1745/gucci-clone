@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('title')
-    All SubCategory
+    All Subcategory
 @endsection
 @section('content')
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0"/>
                 <span class="navbar-text">
-        <a href="{{route('addSubCategory')}}" class="btn btn-primary">Add Products</a>
+        <a href="{{route('addSubcategory')}}" class="btn btn-primary">Add Products</a>
       </span>
             </div>
         </div>
@@ -30,24 +30,24 @@
             <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>SubCategory Name</th>
+                <th>Subcategory Name</th>
                 <th>Category</th>
                 <th>product</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($SubCategories as $SubCategory)
+            @foreach($Subcategories as $Subcategory)
                 <tr>
 
-                    <td>{{$SubCategory->id}}</td>
-                    <td>{{$SubCategory->subCategory_name}}</td>
-                    <td>{{$SubCategory->category_name}}</td>
-                    <td>{{$SubCategory->product_count}}</td>
-                    <td><a class="btn btn-primary" href="{{route('editSubCategory',$SubCategory->id)}}">Edit</a>
-                        <form action="{{route('deleteSubCategory',$SubCategory->id)}}" method="post">
+                    <td>{{$Subcategory->id}}</td>
+                    <td>{{$Subcategory->name}}</td>
+                    <td>{{$Subcategory->category_name}}</td>
+                    <td>{{$Subcategory->product_count}}</td>
+                    <td><a class="btn btn-primary" href="{{route('editSubcategory',$Subcategory->id)}}">Edit</a>
+                        <form action="{{route('deleteSubcategory',$Subcategory->id)}}" method="post">
                             @csrf
-                            <button type="submit" class="btn btn-danger" onclick="confirm('Are you sure you want to delete this subCategory?')">
+                            <button type="submit" class="btn btn-danger" onclick="confirm('Are you sure you want to delete this subcategory?')">
                                 Delete</button>
                         </form>
                     </td>

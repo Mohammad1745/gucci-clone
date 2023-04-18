@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('subCategory_name');
+            $table->string('name');
             $table->string('slug');
             $table->unsignedBigInteger('category_id');
             $table->string('category_name');

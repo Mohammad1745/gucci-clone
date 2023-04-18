@@ -26,12 +26,12 @@
                         </div>
                         <select class="form-select mb-4">
                             <option selected>select Category</option>
-                                <option value="1" readonly>{{$subCategory->category_name}}</option>
+                                <option value="1" readonly>{{$subcategory->category_name}}</option>
                         </select>
                         <select class="form-select mb-4">
                             <option selected>select Sub Category</option>
-                            @foreach($subCategories as $subCategory)
-                                <option value="">{{$subCategory->subCategory_name}}</option>
+                            @foreach($subcategories as $subcategory)
+                                <option value="">{{$subcategory->subcategory_name}}</option>
                             @endforeach
                         </select>
 

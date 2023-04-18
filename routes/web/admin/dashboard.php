@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard',[DashboardController::class,'index']);
@@ -14,17 +14,17 @@ Route::get('/dashboard/editCategory/{id}',[CategoryController::class,'editCatego
 Route::post('/dashboard/editCategory',[CategoryController::class,'updateCategory'])->name('updateCategory');
 Route::post('/dashboard/deleteCategory/{id}',[CategoryController::class,'deleteCategory'])->name('deleteCategory');
 
-Route::get('/dashboard/addSubCategory',[SubCategoryController::class,'addSubCategory'])->name('addSubCategory');
-Route::post('/dashboard/addSubCategory',[SubCategoryController::class,'storeSubCategory'])->name('storeSubCategory');
-Route::get('/dashboard/allSubCategory',[SubCategoryController::class,'allSubCategory'])->name('allSubCategory');
-Route::get('/dashboard/editSubCategory/{id}',[subCategoryController::class,'editSubCategory'])->name('editSubCategory');
-Route::post('/dashboard/updateSubCategory',[subCategoryController::class,'updateSubCategory'])->name('updateSubCategory');
-Route::post('/dashboard/deleteSubCategory/{id}',[subCategoryController::class,'deleteSubCategory'])->name('deleteSubCategory');
+Route::get('/dashboard/addSubcategory',[SubcategoryController::class,'addSubcategory'])->name('addSubcategory');
+Route::post('/dashboard/addSubcategory',[SubcategoryController::class,'storeSubcategory'])->name('storeSubcategory');
+Route::get('/dashboard/allSubcategory',[SubcategoryController::class,'allSubcategory'])->name('allSubcategory');
+Route::get('/dashboard/editSubcategory/{id}',[subcategoryController::class,'editSubcategory'])->name('editSubcategory');
+Route::post('/dashboard/updateSubcategory',[subcategoryController::class,'updateSubcategory'])->name('updateSubcategory');
+Route::post('/dashboard/deleteSubcategory/{id}',[subcategoryController::class,'deleteSubcategory'])->name('deleteSubcategory');
 
 // Add product
 
 Route::get('/dashboard/addProduct',[ProductController::class,'addProduct'])->name('addProduct');
-Route::get('/dashboard/addProduct/selectCategory',[ProductController::class,'selectCategory'])->name('selectCategory');
+Route::post('/dashboard/addProduct/',[ProductController::class,'storeProduct'])->name('storeProduct');
 Route::get('/dashboard/currentOrder',[DashboardController::class,'currentOrder'])->name('currentOrder');
 Route::get('/dashboard/completedOrder',[DashboardController::class,'completedOrder'])->name('completedOrder');
 

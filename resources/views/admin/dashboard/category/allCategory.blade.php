@@ -40,7 +40,7 @@
             <tr>
                 <th>ID</th>
                 <th>Category</th>
-                <th>SubCategory</th>
+                <th>Subcategory</th>
                 <th>product</th>
                 <th>Actions</th>
             </tr>
@@ -50,9 +50,9 @@
                 <tr>
 
                     <td>{{$category->id}}</td>
-                    <td>{{$category->category_name}}</td>
-                    <td>{{$category->subCategoryCount}}</td>
-                    <td>{{$category->productCount}}</td>
+                    <td>{{$category->name}}</td>
+                    <td>{{$category->subcategory_count}}</td>
+                    <td>{{$category->product_count}}</td>
                     <td><a class="btn btn-primary" href="{{route('editCategory',$category->id)}}">Edit</a>
                         <form action="{{route('deleteCategory',$category->id)}}" method="post">
                             @csrf

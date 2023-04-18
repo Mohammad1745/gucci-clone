@@ -17,11 +17,9 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('price');
-            $table->string('category_name');
             $table->integer('category_id');
-            $table->string('subCategory_name');
-            $table->integer('subCategory_id');
-            $table->integer('count');
+            $table->integer('subcategory_id');
+            $table->integer('quantity')->default(0);
             $table->string('image');
             $table->string('slug')->unique();
         });

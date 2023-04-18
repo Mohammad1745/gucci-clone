@@ -15,8 +15,8 @@
                 </div>
                    <br/>
                 <div class="btn-group">
-                    <a href="{{route('allSubCategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
-                       SubCategory
+                    <a href="{{route('allSubcategory')}}" type="button" class="btn btn-light "  aria-expanded="false">
+                       Subcategory
                     </a>
                 </div>
                    <br/>

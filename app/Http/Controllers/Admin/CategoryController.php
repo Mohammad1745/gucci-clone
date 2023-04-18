@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AddCategoryRequest;
 use App\Http\Requests\Dashboard\editCategoryRequest;
 use App\Http\Services\Admin\CategoryService;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
@@ -15,7 +18,7 @@ class CategoryController extends Controller
     {
         $this->service=$service;
     }
-    public function getAllCategory()
+    public function getAllCategory(): View|\Illuminate\Foundation\Application|Factory|RedirectResponse|Application
     {
         $response=$this->service->getAllCategory();
         $dataResponse=$response['data'];
@@ -35,6 +38,10 @@ class CategoryController extends Controller
             :redirect()->back()->with('error',$response['message']);
     }
 
+    /**
+     * @param $id
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
+     */
     public function editCategory($id)
     {
         $response=$this->service->editCategory($id);
@@ -44,11 +51,12 @@ class CategoryController extends Controller
 
     }
 
+
     /**
      * @param editCategoryRequest $request
      * @return RedirectResponse
      */
-    public function updateCategory(editCategoryRequest $request)
+    public function updateCategory(EditCategoryRequest $request): RedirectResponse
     {
         $response=$this->service->updateCategory($request->all());
         return $response['success'] ? redirect()->route('getAllCategory')->with('success', $response['message'])

@@ -23,7 +23,7 @@ class AddCategoryRequest extends FormRequest
     {
         return [
 
-            'category_name' => 'required|unique:categories|max:255',
+            'name' => 'required|unique:categories|max:255',
             'image' => 'required|image|max:2048',
         ];
     }

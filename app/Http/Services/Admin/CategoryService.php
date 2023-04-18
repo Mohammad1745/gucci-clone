@@ -11,12 +11,11 @@ class CategoryService extends Service
     public function storeCategory(array $data)
     {
         try{
-
             $imagePath = $data['image']->store('public/category_image');
             $imageUrl = Storage::url($imagePath);
             Category::create([
-                'category_name'=>$data['category_name'],
-                'slug'=>strtolower(str_replace(' ','-',$data['category_name'])),
+                'name'=>$data['name'],
+                'slug'=>strtolower(str_replace(' ','-',$data['name'])),
                 'image'=>$imageUrl,
             ]);
             return $this->responseSuccess('Category uploaded');
@@ -25,7 +24,11 @@ class CategoryService extends Service
             return $this->responseError($exception->getMessage());
         }
     }
-    public function getAllCategory()
+
+    /**
+     * @return array
+     */
+    public function getAllCategory(): array
     {
         try{
             $data=Category::all();
@@ -53,7 +56,7 @@ class CategoryService extends Service
     public function updateCategory(array $data): array
     {
         try{
-            Category::where('id',$data['id'])->update(['category_name'=>$data['category_name']]);
+            Category::where('id',$data['id'])->update(['name'=>$data['name']]);
             return $this->responseSuccess('Category name updated');
         }catch (\Exception $exception)
         {

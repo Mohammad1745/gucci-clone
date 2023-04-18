@@ -9,7 +9,7 @@ class Subcategory extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'subCategory_name',
+        'name',
         'category_id',
         'slug',
         'category_name'
