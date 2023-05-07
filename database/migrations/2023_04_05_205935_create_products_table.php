@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('subcategory_id');
             $table->integer('quantity')->default(0);
             $table->string('image');
+
             $table->string('slug')->unique();
         });
     }

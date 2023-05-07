@@ -25,10 +25,12 @@ Route::post('/dashboard/deleteSubcategory/{id}',[subcategoryController::class,'d
 
 Route::get('/dashboard/addProduct',[ProductController::class,'addProduct'])->name('addProduct');
 Route::post('/dashboard/addProduct/',[ProductController::class,'storeProduct'])->name('storeProduct');
+Route::get('/dashboard/allProduct',[ProductController::class,'allProduct'])->name('allProduct');
+
 Route::get('/dashboard/currentOrder',[DashboardController::class,'currentOrder'])->name('currentOrder');
 Route::get('/dashboard/completedOrder',[DashboardController::class,'completedOrder'])->name('completedOrder');
 
 
 // All product
 
-Route::get('/dashboard/allProduct',[DashboardController::class,'allProduct'])->name('allProduct');
+

@@ -14,7 +14,8 @@ class ProductService extends Service
     public function storeProduct(array $data)
     {
         try{
-            if($data['name'] && $data['subcategory_id'] && $data['description'] && $data['quantity'] && $data['price'] && $data['image']){
+
+            if($data['name'] && $data['subcategory_id'] && $data['description'] && $data['quantity'] && $data['price'] && array_key_exists('image',$data)){
                 $imagePath = $data['image']->store('public/product_image');
                 $imageUrl = Storage::url($imagePath);
                     Product::create([
@@ -41,11 +42,23 @@ class ProductService extends Service
                     'subcategories'=>$subcategories,
                     'oldData'=>$data
                 ];
+
                 return $this->responseSuccess('redirected',$output);
             }
 
         }catch (\Exception $exception)
         {
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function allProduct()
+    {
+        try{
+
+            $products=Product::all();
+
+            return $this->responseSuccess('all Product',['data'=>$products]);
+        }catch (\Exception $exception){
             return $this->responseError($exception->getMessage());
         }
     }

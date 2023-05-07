@@ -23,6 +23,7 @@ class Product extends Authenticatable
         'price',
         'category_id',
         'subcategory_id',
+        'quantity',
         'image',
         'slug'
     ];

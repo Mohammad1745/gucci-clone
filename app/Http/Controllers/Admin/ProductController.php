@@ -37,10 +37,19 @@ class ProductController extends Controller
     public function storeProduct(addProductRequest $request)
     {
         $response=$this->service->storeProduct($request->all());
+
         return $response['success'] ?
             ($response['data']['redirect']?
                  view('admin/dashboard/product/addProduct',$response['data'])
                 :redirect()->route('allProduct')->with('success', $response['message']))
+            :redirect()->back()->with('error',$response['message']);
+    }
+    public function allProduct()
+    {
+        $response=$this->service->allProduct();
+        $arrayData=$response['data'];
+        return $response['success'] ?
+                view('admin/dashboard/product/allProduct')->with('products',$arrayData['data'])
             :redirect()->back()->with('error',$response['message']);
     }
     public function storeSubcategory(AddSubcategoryRequest $request): RedirectResponse
