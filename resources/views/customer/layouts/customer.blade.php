@@ -63,11 +63,11 @@
                 <div class="col-sm-12">
                     <div class="custom_menu">
                         <ul>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
-                            <li><a href="#"></a></li>
+                            <li><a href="{{route('home')}}">Home</a></li>
+                            <li><a href="{{route('bestSells')}}">Best Sellers</a></li>
+                            <li><a href="{{route('newRelease')}}">New Releases</a></li>
+                            <li><a href="#">Today's Deals</a></li>
+                            <li><a href="{{route('customerService')}}">Customer Service</a></li>
                         </ul>
                     </div>
                 </div>
