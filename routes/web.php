@@ -22,3 +22,4 @@ require base_path('routes/web/admin/category.php');
 //customer routes
 require base_path('routes/web/customer/auth.php');
 require base_path('routes/web/customer/category.php');
+require base_path('routes/web/customer/userView.php');
