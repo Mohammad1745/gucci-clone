@@ -56,7 +56,6 @@ class ProductService extends Service
         try{
 
             $products=Product::all();
-
             return $this->responseSuccess('all Product',['data'=>$products]);
         }catch (\Exception $exception){
             return $this->responseError($exception->getMessage());

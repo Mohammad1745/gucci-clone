@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 @section('title')
-    Add product
+    Edit product
 @endsection
 @section('content')
 
@@ -17,14 +17,16 @@
             </div>
 
             <div class="col-md-8 col-lg-8">
-
+                    @php
+                    $categories=$ArrayNew;
+                    @endphp
 
                 <form method="post" action="{{route('storeProduct')}}" enctype="multipart/form-data">
                     <!-- 2 column grid layout with text inputs for the first and last names -->
                     @csrf
 
                     <div class="form-outline mb-4">
-                        <input name="name" type="text" @if(isset($oldData)) value="{{$oldData['name']}}" @endif id="form6Example1" class="form-control"  />
+                        <input name="name" type="text"  value="{{$product->name}}" @endif id="form6Example1" class="form-control"  />
                         <label class="form-label" for="form6Example1">Name</label>
                     </div>
                     @if (isset($errors) && $errors->has('name'))
@@ -83,7 +85,7 @@
                         @endif
                     </div>
                     <!-- Submit button -->
-                    <button type="submit" class="btn btn-primary ">Add Product</button>
+                    <button type="submit" class="btn btn-primary ">Update Product</button>
                 </form>
             </div>
 

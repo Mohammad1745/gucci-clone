@@ -8,10 +8,7 @@ use Illuminate\Http\Request;
 class PageViewController extends Controller
 {
     //
-    public function categoryPage()
-    {
-        return view('customer.view.categoryPage');
-    }
+
     public function singleProductPage()
     {
         return view('customer.view.singleProductPage');

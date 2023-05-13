@@ -7,13 +7,13 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
-class CustomerCategoryService extends service
+class ProductService extends service
 {
-public function categoryProduct($id)
+public function homePage()
 {
     try{
-        $category=Category::find($id);
-        $products=Product::where('category_id',$id)->get();
+        $category=Category::all();
+        $products=Product::all();
 
         //dd($category);
         return $this->responseSuccess('all Product',['data'=>$products,'category'=>$category]);

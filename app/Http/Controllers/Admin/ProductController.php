@@ -7,6 +7,7 @@ use App\Http\Requests\Dashboard\addProductRequest;
 use App\Http\Requests\Dashboard\AddSubcategoryRequest;
 use App\Http\Services\Admin\ProductService;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -52,20 +53,17 @@ class ProductController extends Controller
                 view('admin/dashboard/product/allProduct')->with('products',$arrayData['data'])
             :redirect()->back()->with('error',$response['message']);
     }
-    public function storeSubcategory(AddSubcategoryRequest $request): RedirectResponse
-    {
 
-        $response=$this->service->storeSubcategory($request->all());
-        return $response['success'] ? redirect()->route('allSubcategory')->with('success', $response['message'])
-            :redirect()->back()->with('error',$response['message']);
-    }
 
-    public function editSubcategory($id)
+    public function editProduct($id)
     {
-        $response=$this->service->editSubcategory($id);
-        $dataResponse=$response['data'];
-        return $response['success'] ?view('admin/dashboard/subcategory/editSubcategory')->with('subcategory',$dataResponse['data'])
-            :redirect()->back()->with('error',$response['message']);
+        $categories=Category::all();
+        $product=Product::find($id);
+        $ArrayNew=[
+           'categories'=> $categories,
+            'product'=>$product
+        ];
+        return view('admin/dashboard/product/editProduct')->with('ArrayNew',$ArrayNew);
 
     }
 
