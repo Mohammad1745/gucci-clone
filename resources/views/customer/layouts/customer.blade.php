@@ -36,6 +36,69 @@
     <link rel="stylesoeet" href="/css/customer/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <style>
+
+        #divMenu, ul, li, li li {
+            margin: 0;
+            padding: 0;
+        }
+
+        #divMenu {
+            width: 150px;
+            height: 27px;
+        }
+
+        #divMenu ul
+        {
+            line-height: 25px;
+        }
+
+        #divMenu li {
+            list-style: none;
+            position: relative;
+            background: #641b1b;
+        }
+
+        #divMenu li li {
+            list-style: none;
+            position: relative;
+            background: #641b1b;
+            left: 148px;
+            top: -27px;
+        }
+
+
+        #divMenu ul li a {
+            width: 148px;
+            height: 25px;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            font-family: Georgia,'Times New Roman',serif;
+            color:#ffffff;
+            border:1px solid #eee;
+        }
+
+        #divMenu ul ul {
+            position: absolute;
+            visibility: hidden;
+            top: 27px;
+        }
+
+        #divMenu ul li:hover ul {
+            visibility: visible;
+        }
+
+        #divMenu li:hover {
+            background-color: #945c7d;
+        }
+
+        #divMenu ul li:hover ul li a:hover {
+            background-color: #945c7d;
+        }
+
+        #divMenu a:hover {
+            font-weight: bold;
+        }
         .dropdown-item {
             position: relative;
         }
@@ -93,53 +156,51 @@
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                     <a href="{{route('home')}}">Home</a>
-                    @php
-                        $categories=App\Models\Category::all();
-                    @endphp
                     @foreach($categories as $category)
-                        <a  href="#">{{ucfirst($category->name)}}</a>
+                        <a  href="{{route('categoryPage',[$category->id,$category->slug])}}">{{ucfirst($category->name)}}</a>
                     @endforeach
                 </div>
                 <span class="toggle_icon" onclick="openNav()"><img src="/img/customer/toggle-icon.png"></span>
                 <!--start dropdown for category-->
 
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Category
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-                        @foreach($categories as $category)
-                            <a class="dropdown-item" href="{{route('categoryPage',[$category->id,$category->slug])}}">{{ucfirst($category->name)}}</a>
-                        @endforeach
-                    </div>
-                </div>
                 <!-- end dropdown for category-->
+<!-- from here -->
+
+
+
+
 
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Subcategory
+                         Products
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#" data-toggle="dropdown">Action
-                            <div class="dropdown-menu sub-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Sub-Action 1</a>
-                                <a class="dropdown-item" href="#">Sub-Action 2</a>
-                            </div>
-                        </a>
-                        <a class="dropdown-item" href="#" data-toggle="dropdown">Another action
-                            <div class="dropdown-menu sub-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Sub-Action 1</a>
-                                <a class="dropdown-item" href="#">Sub-Action 2</a>
-                            </div>
-                        </a>
-                        <a class="dropdown-item" href="#" data-toggle="dropdown">Something else here
-                            <div class="dropdown-menu sub-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Sub-Action 1</a>
-                                <a class="dropdown-item" href="#">Sub-Action 2</a>
-                            </div>
-                        </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background: transparent;">
+
+                        <div id="divMenu">
+                            <ul>
+                                @foreach($categories as $category)
+                                <li><a  href="{{route('categoryPage',[$category->id,$category->slug])}}">{{ucfirst($category->name)}}</a>
+                                    <ul>
+                                        @foreach($subCategories as $subCategory)
+                                            @if($category->id==$subCategory->category_id)
+
+                                            <li>
+                                                <a href="{{route('subCategoryPage',[$subCategory->id,$category->name,$subCategory->name,])}}">{{$subCategory->name}}</a>
+                                            </li>
+
+                                            @endif
+                                        @endforeach
+
+                                    </ul>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
+
+
+<!-- end here -->
 
 
                 <div class="main">

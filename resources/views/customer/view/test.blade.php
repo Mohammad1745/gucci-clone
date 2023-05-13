@@ -157,3 +157,16 @@
     @endforeach
     <!-- fashion section start -->
 @endsection
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Subcategory
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    @foreach($subCategories as $subCategory)
+                        <a class="dropdown-item" href="{{route('subCategoryPage',[$category->name,$subCategory->name,$subCategory->id])}}" data-toggle="dropdown">{{$subCategory->name}}
+                        </a>
+                    @endforeach
+
+                </div>
+            </div>

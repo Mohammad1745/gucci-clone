@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\AddCategoryRequest;
 use App\Http\Requests\Dashboard\editCategoryRequest;
+use App\Http\Services\Admin\CategoryService;
 use App\Http\Services\Admin\CustomerCategoryService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -13,8 +14,8 @@ use Illuminate\Http\RedirectResponse;
 
 class CategoryController extends Controller
 {
-    private CustomerCategoryService $service;
-    function __construct(CustomerCategoryService $service)
+    private CategoryService $service;
+    function __construct(CategoryService $service)
     {
         $this->service=$service;
     }

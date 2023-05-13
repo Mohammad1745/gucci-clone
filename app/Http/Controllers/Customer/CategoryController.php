@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Customer\CustomerCategoryService;
+use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,10 +20,12 @@ class CategoryController extends Controller
 
         $response=$this->service->categoryProduct($id);
         $products=$response['data']['data'];
-        $category=$response['data']['category'];
+        $singleCategorySubCategory=$response['data']['category'];
+        $categories=Category::all();
+        $subCategories=subCategory::all();
 
         return $response['success'] ?
-            view('customer/view/categorySubCategoryPage',compact('products','category'))
+            view('customer/view/categorySubCategoryPage',compact('products','singleCategorySubCategory','categories','subCategories'))
             :redirect()->back()->with('error',$response['message']);
 
     }

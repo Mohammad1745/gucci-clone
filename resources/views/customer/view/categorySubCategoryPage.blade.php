@@ -12,7 +12,7 @@
 
 
 
-                            <h1 class="fashion_taital">{{$category->name}}</h1>
+                            <h1 class="fashion_taital">{{$singleCategorySubCategory->name}}</h1>
 
                             <div class="fashion_section_2">
 

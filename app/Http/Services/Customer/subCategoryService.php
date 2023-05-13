@@ -5,18 +5,21 @@ namespace App\Http\Services\Customer;
 use App\Http\Services\Service;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\DB;
 
-class CustomerCategoryService extends service
+class subCategoryService extends service
 {
-public function categoryProduct($id)
+public function subCategoryProduct($id)
 {
     try{
-        $category=Category::find($id);
-        $products=Product::where('category_id',$id)->get();
+
+        $singleSubCategory=Subcategory::find($id);
+
+        $products=Product::where('subCategory_id',$id)->get();
 
         //dd($category);
-        return $this->responseSuccess('all Product',['data'=>$products,'category'=>$category]);
+        return $this->responseSuccess('all Product',['data'=>$products,'singleSubCategory'=>$singleSubCategory]);
     }catch (\Exception $exception){
         return $this->responseError($exception->getMessage());
     }
