@@ -65,9 +65,17 @@
                                                 <h4 class="shirt_text">{{$product->name}}</h4>
                                                 <p class="price_text">Price  <span style="color: #262626;">$ {{$product->price}}</span></p>
                                                 <div class="tshirt_img"><img src="{{ asset('storage/product_image/' . basename($product->image)) }}"/></div>
-                                                <div class="btn_main">
-                                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                                    <div class="seemore_bt"><a href="#">See More</a></div>
+                                                <div class="buy_bt">
+                                                    <form action="{{route('addToCard')}}" method="post">
+                                                        @csrf
+                                                        <input name="product_name"type="hidden" value="{{$product->name}}">
+                                                        <input name="product_id"type="hidden" value="{{$product->id}}">
+                                                        <input name="price" type="hidden" value="{{$product->price}}">
+                                                        <input name="quantity"type="hidden" value="1">
+                                                        <br>
+                                                        <button type="submit" class="btn btn-warning">Add To Card</button>
+                                                    </form>
+                                                    <a  href="{{route('singleProductPage',[$product->id,$product->slug])}}">Details</a>
                                                 </div>
                                             </div>
                                         </div>

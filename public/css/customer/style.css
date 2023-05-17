@@ -603,12 +603,15 @@ a:hover {
 
 .btn_main {
     width: 100%;
-    display: flex;
+
+
 }
 
 .buy_bt {
-    float: left;
+    display: flex;
     width: 100%;
+
+    justify-content: space-between;
 }
 
 .buy_bt a {
@@ -618,6 +621,7 @@ a:hover {
     background-color: transparent;
     text-align: right;
     font-weight: bold;
+
 }
 
 .buy_bt a:hover {

@@ -55,13 +55,13 @@
         #divMenu li {
             list-style: none;
             position: relative;
-            background: #641b1b;
+            background: #545b62;
         }
 
         #divMenu li li {
             list-style: none;
             position: relative;
-            background: #641b1b;
+            background: #545b62;
             left: 148px;
             top: -27px;
         }
@@ -118,7 +118,7 @@
 </head>
 <body>
 <!-- banner bg main start -->
-<div class="banner_bg_main">
+<div class="banner_bg_main" style="padding-bottom: 5px">
     <!-- header top section start -->
     <div class="container">
         <div class="header_section_top">
@@ -215,26 +215,21 @@
                     </div>
                 </div>
                 <div class="header_box">
-                    <div class="lang_box ">
-                        <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                            <img src="/img/customer/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
-                        </a>
-                        <div class="dropdown-menu ">
-                            <a href="#" class="dropdown-item">
-                                <img src="/img/customer/flag-france.png" class="mr-2" alt="flag">
-                                French
-                            </a>
-                        </div>
-                    </div>
                     <div class="login_menu">
                         <ul>
-                            <li><a href="#">
+                            <li><a href="{{route('addToCardPage')}}">
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                     <span class="padding_10">Cart</span></a>
                             </li>
-                            <li><a href="#">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span class="padding_10">Cart</span></a>
+                            <li>@if(Auth::user())
+                                    <a href="{{route('userProfile')}}">
+                                        <i class="fa fa-user" aria-hidden="true"></i><span class="padding_10">Profile</span>
+                                    </a>
+                                @else
+                                    <a  href="{{route("login")}}">
+                                        <i class="fa fa-user" aria-hidden="true"></i><span class="padding_10">Login</span>
+                                    </a>
+                            @endif
                             </li>
                         </ul>
                     </div>
