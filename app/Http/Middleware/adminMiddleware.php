@@ -14,7 +14,7 @@ class adminMiddleware
     public function handle( Request $request, Closure $next)
     {
         // Check if the current user is the specific user
-        if (Auth::user()->role =='admin') {
+        if (Auth::user() =='admin') {
             // Custom logic for specific user
             // You can add your desired code here
             return $next($request);

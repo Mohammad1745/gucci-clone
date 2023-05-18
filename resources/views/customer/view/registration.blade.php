@@ -39,48 +39,51 @@
                                                 <input name="name"type="text" id="firstName" class="form-control form-control-lg" />
                                                 <label class="form-label" for="firstName">Name</label>
                                             </div>
-                                            @if (isset($errors) && $errors->has('name'))
-                                                <span class="text-danger"><strong>{{ $errors->first('name') }}</strong></span>
-                                            @endif
-                                        </div>
 
+                                        </div>
+                                        @if (isset($errors) && $errors->has('name'))
+                                            <span class="text-danger"><strong>{{ $errors->first('name') }}</strong></span>
+                                        @endif
                                         <div class="d-flex flex-row align-items-center mb-1">
                                             <div class="form-outline flex-fill mb-0">
                                                 <input name="email"type="email" id="emailAddress" class="form-control form-control-lg" />
                                                 <label class="form-label" for="emailAddress">Email</label>
                                             </div>
-                                            @if (isset($errors) && $errors->has('email'))
-                                                <span class="text-danger"><strong>{{ $errors->first('email') }}</strong></span>
-                                            @endif
-                                        </div>
 
+                                        </div>
+                                        @if (isset($errors) && $errors->has('email'))
+                                            <span class="text-danger"><strong>{{ $errors->first('email') }}</strong></span>
+                                        @endif
                                         <div class="d-flex flex-row align-items-center mb-1">
                                             <div class="form-outline flex-fill mb-0">
                                                 <input name="number"type="tel" id="phoneNumber" class="form-control form-control-lg" />
                                                 <label class="form-label" for="phoneNumber">Phone Number</label>
                                             </div>
-                                            @if (isset($errors) && $errors->has('number'))
-                                                <span class="text-danger"><strong>{{ $errors->first('number') }}</strong></span>
-                                            @endif
+
                                         </div>
+                                        @if (isset($errors) && $errors->has('number'))
+                                            <span class="text-danger"><strong>{{ $errors->first('number') }}</strong></span>
+                                        @endif
                                         <div class="d-flex flex-row align-items-center mb-1">
                                             <div class="form-outline flex-fill mb-0">
                                                 <input name="password"type="password" id="typePasswordX-2" class="form-control form-control-lg" />
                                                 <label class="form-label" for="typePasswordX-2">Password</label>
                                             </div>
-                                            @if (isset($errors) && $errors->has('password'))
-                                                <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
-                                            @endif
+
                                         </div>
+                                        @if (isset($errors) && $errors->has('password'))
+                                            <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
+                                        @endif
                                         <div class="d-flex flex-row align-items-center mb-1">
                                             <div class="form-outline flex-fill mb-0">
                                                 <input name="confirm_password"type="password" id="typePasswordX-2" class="form-control form-control-lg" />
                                                 <label class="form-label" for="typePasswordX-2">Confirm Password</label>
                                             </div>
-                                            @if (isset($errors) && $errors->has('confirm_password'))
-                                                <span class="text-danger"><strong>{{ $errors->first('confirm_password') }}</strong></span>
-                                            @endif
+
                                         </div>
+                                        @if (isset($errors) && $errors->has('confirm_password'))
+                                            <span class="text-danger"><strong>{{ $errors->first('confirm_password') }}</strong></span>
+                                        @endif
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button type="submit" class="btn btn-primary btn-lg">Register</button>
                                         </div>

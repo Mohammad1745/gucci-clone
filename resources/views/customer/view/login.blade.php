@@ -17,20 +17,21 @@
                                             <input name="email"type="email" id="emailAddress" class="form-control form-control-lg" />
                                             <label class="form-label" for="emailAddress">Email</label>
                                         </div>
-                                        @if (isset($errors) && $errors->has('email'))
-                                            <span class="text-danger"><strong>{{ $errors->first('email') }}</strong></span>
-                                        @endif
-                                    </div>
 
+                                    </div>
+                                    @if (isset($errors) && $errors->has('email'))
+                                        <span class="text-danger"><strong>{{ $errors->first('email') }}</strong></span>
+                                    @endif
                                     <div class="d-flex flex-row align-items-center mb-1">
                                         <div class="form-outline flex-fill mb-0">
                                             <input name="password"type="password" id="typePasswordX-2" class="form-control form-control-lg" />
                                             <label class="form-label" for="typePasswordX-2">Password</label>
                                         </div>
-                                        @if (isset($errors) && $errors->has('password'))
-                                            <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
-                                        @endif
                                     </div>
+
+                                    @if (isset($errors) && $errors->has('password'))
+                                        <span class="text-danger"><strong>{{ $errors->first('password') }}</strong></span>
+                                    @endif
                                     <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 
                                     <div class="text-center">

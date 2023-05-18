@@ -67,10 +67,31 @@ public function addToCard(Request $request)
     public function removeCard($id)
     {
         $response=$this->service->removeCard($id);
+        return $response['success']?redirect()->route('addToCardPage')
+            :redirect()->back()->with('error',$response['message']);
+    }
+    public function shippingInfo()
+    {
 
         $categories=Category::all();
         $subCategories=Subcategory::all();
-        return $response['success']?route('addToCardPage')
+        return view('customer.view.shippingAddressPage',compact('categories','subCategories'));
+    }
+    public function checkoutPage()
+    {
+
+        $categories=Category::all();
+        $subCategories=Subcategory::all();
+        $response=$this->service->checkoutPage();
+        $carts=$response['data']['cards'];
+        $shippingInfo=$response['data']['shippingInfo'];
+        return $response['success']?view('customer.view.checkoutPage',compact('categories','subCategories','carts','shippingInfo'))->with('message',$response['message'])
+            :redirect()->back()->with('error',$response['message']);
+    }
+    public function addShippingInfo(Request $request)
+    {
+        $response=$this->service->addShippingInfo($request->all());
+        return $response['success']?redirect()->route('checkoutPage')
             :redirect()->back()->with('error',$response['message']);
     }
 }

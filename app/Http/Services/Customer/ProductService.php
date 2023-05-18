@@ -6,6 +6,7 @@ use App\Http\Services\Service;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ShippingInfo;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -74,6 +75,31 @@ public function homePage()
             $card->delete();
 
             return $this->responseSuccess('success');
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function addShippingInfo($data): array
+    {
+        try{
+           ShippingInfo::create([
+                'user_id'=>Auth::id(),
+               'number'=>$data['number'],
+               'village_name'=>$data['village_name'],
+               'postal_code'=>$data['postal_code'],
+               'message'=>$data['message']
+            ]);
+            return $this->responseSuccess('information added successfully');
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function checkoutPage(): array
+    {
+        try{
+            $cards=Cart::where('user_id',Auth::id())->get();
+            $shippingInfo=ShippingInfo::where('user_id',Auth::id())->first();
+            return $this->responseSuccess('success',['cards'=>$cards,'shippingInfo'=>$shippingInfo]);
         }catch (\Exception $exception){
             return $this->responseError($exception->getMessage());
         }
