@@ -5,6 +5,7 @@ namespace App\Http\Services\Customer;
 use App\Http\Services\Service;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ShippingInfo;
 use App\Models\Subcategory;
@@ -100,6 +101,41 @@ public function homePage()
             $cards=Cart::where('user_id',Auth::id())->get();
             $shippingInfo=ShippingInfo::where('user_id',Auth::id())->first();
             return $this->responseSuccess('success',['cards'=>$cards,'shippingInfo'=>$shippingInfo]);
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function placeOrder(): array
+    {
+        try{
+            $user_id=Auth::id();
+            $cart_item=Cart::where('user_id',Auth::id())->get();
+            $shippingInfo=ShippingInfo::where('user_id',Auth::id())->first();
+
+            foreach ($cart_item as $item)
+            {
+                $order=Order::insert([
+                    'user_id'=>$user_id,
+                     'number'=>$shippingInfo->number,
+                    'village_name'=>$shippingInfo->village_name,
+                    'postal_code'=>$shippingInfo->postal_code,
+                    'product_name'=>$item->product_name,
+                    'quantity'=>$item->quantity,
+                    'total_price'=>$item->price,
+                    'status'=>'pending'
+                ]);
+               Cart::findOrFail($item->id)->delete();
+            };
+            return $this->responseSuccess('Order placed successfully');
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function pendingOrder(): array
+    {
+        try{
+            $pending_orders=Order::where('user_id',Auth::id())->where('status','pending')->get();
+            return $this->responseSuccess('all pending order',['pending_orders'=>$pending_orders]);
         }catch (\Exception $exception){
             return $this->responseError($exception->getMessage());
         }

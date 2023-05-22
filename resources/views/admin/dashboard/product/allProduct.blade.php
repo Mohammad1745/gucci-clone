@@ -81,12 +81,17 @@
                                       <div class="d-flex flex-row align-items-center mb-1">
                                           <h4 class="mb-1 me-1">${{$product->price}}</h4>
                                       </div>
-                                      <div class="d-flex flex-column mt-4">
-                                          <button class="btn btn-primary btn-sm" type="button">Details</button>
-                                          <button class="btn btn-outline-primary btn-sm mt-2" type="button">
-                                              Add to wishlist
-                                          </button>
+                                      <form action="{{route('deleteProduct',$product->id)}}" method="post">
+                                      @csrf
+                                          <div class="d-flex flex-column mt-4">
+                                          <a href="{{route('editProduct',$product->id)}}" class="btn btn-primary btn-sm" type="button">Edit</a>
+
+                                                <button class="btn btn-danger btn-sm mt-2" type="submit">
+                                                    Delete
+                                                </button>
+
                                       </div>
+                                      </form>
                                   </div>
                               </div>
                           </div>

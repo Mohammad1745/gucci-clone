@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('number');
             $table->string('village_name');
             $table->string('postal_code');
-            $table->string('');
-            $table->id();
-            $table->id();
+            $table->string('product_name');
+            $table->integer('quantity');
+            $table->integer('total_price');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

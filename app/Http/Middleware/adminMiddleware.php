@@ -13,14 +13,14 @@ class adminMiddleware
 
     public function handle( Request $request, Closure $next)
     {
+        //dd(Auth::user());
+        $user=Auth::user();
         // Check if the current user is the specific user
-        if (Auth::user() =='admin') {
+        if ($user->role=='admin') {
             // Custom logic for specific user
             // You can add your desired code here
             return $next($request);
         }
-
-
-        return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
+        return redirect()->route('admin.login')->with('error', 'You are not authorized to access this page.');
     }
 }

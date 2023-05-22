@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Storage;
-use mysql_xdevapi\Exception;
+
 
 class ProductService extends Service
 {
@@ -61,5 +61,45 @@ class ProductService extends Service
             return $this->responseError($exception->getMessage());
         }
     }
+    public function updateProduct($data)
+    {
+        try{
+            if($data['image']){
+                $imagePath = $data['image']->store('public/product_image');
+                $imageUrl = Storage::url($imagePath);
+                Product::findOrFail($data['product_id'])->update([
+                    'name'=>$data['name'],
+                    'description'=>$data['description'],
+                    'price'=>$data['price'],
+                    'image'=>$imageUrl,
+                    'quantity'=>$data['quantity'],
+                    'slug'=>strtolower(str_replace(' ','-',$data['name'])),
+                ]);
+            }
+            else{
+                Product::findOrFail($data['product_id'])->update([
+                    'name'=>$data['name'],
+                    'description'=>$data['description'],
+                    'price'=>$data['price'],
+                    'quantity'=>$data['quantity'],
+                    'slug'=>strtolower(str_replace(' ','-',$data['name'])),
+                ]);
+            }
+
+            return $this->responseSuccess('product updated successfully');
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+public function deleteProduct($id){
+    try{
+
+        $product=Product::findOrFail($id);
+        $product->delete();
+        return $this->responseSuccess('Product Deleted Successfully');
+    }catch (\Exception $exception){
+        return $this->responseError($exception->getMessage());
+    }
+}
 
 }

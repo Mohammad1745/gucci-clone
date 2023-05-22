@@ -71,7 +71,7 @@
                     </form>
                 </div>
                 <div style="padding: 5px">
-                    <form action=""method="post">
+                    <form action="{{route('placeOrder')}}"method="post">
                         @csrf
                         <button type="submit" class="btn btn-warning">Place Order</button>
                     </form>

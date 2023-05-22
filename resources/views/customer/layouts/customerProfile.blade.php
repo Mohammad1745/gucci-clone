@@ -6,8 +6,8 @@
         <div class="col-lg-4"style="margin-top:50px;padding-bottom: 30px">
             <div class="box_main"  >
                 <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Pending Order</a></li>
+                    <li><a href="{{route('user_dashboard')}}">Dashboard</a></li>
+                    <li><a href="{{route('pendingOrder')}}">Pending Order</a></li>
                     <li><a href="#">History</a></li>
                     <li><a href="{{route('logout')}}">Logout</a></li>
                 </ul>

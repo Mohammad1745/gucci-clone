@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0"/>
                 <span class="navbar-text">
-        <a href="{{route('addSubcategory')}}" class="btn btn-primary">Add Products</a>
+        <a href="{{route('addSubcategory')}}" class="btn btn-primary">Add Subcategory</a>
       </span>
             </div>
         </div>

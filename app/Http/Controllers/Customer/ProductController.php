@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\customer\SearchRequest;
 use App\Http\Services\Customer\ProductService;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -94,4 +96,40 @@ public function addToCard(Request $request)
         return $response['success']?redirect()->route('checkoutPage')
             :redirect()->back()->with('error',$response['message']);
     }
+    public function placeOrder()
+    {
+        $response=$this->service->placeOrder();
+        return $response['success']?redirect()->route('pendingOrder')->with('message',$response['message'])
+            :redirect()->back()->with('error',$response['message']);
+    }
+    public function pendingOrder()
+    {
+        $categories=Category::all();
+        $subCategories=Subcategory::all();
+        $response=$this->service->pendingOrder();
+        $pending_orders=$response['data']['pending_orders'];
+        return $response['success']?view('customer.view.pendingOrderPage',compact('categories','subCategories','pending_orders'))->with('message',$response['message'])
+            :redirect()->back()->with('error',$response['message']);
+
+    }
+    public function user_dashboard()
+    {
+
+        $categories=Category::all();
+        $subCategories=Subcategory::all();
+        $user=Auth::user();
+        return view('customer.view.userDashboard',compact('categories','subCategories','user'));
+    }
+    public function search(SearchRequest $request)
+    {
+
+        $categories=Category::all();
+        $subCategories=Subcategory::all();
+        $description=$request['description'];
+        $products = Product::where('name', 'LIKE', "%$description%")
+            ->orWhere('description', 'LIKE', "%$description%")
+            ->get();
+        return view('customer.view.searchProduct',compact('categories','subCategories','products','description'));
+    }
+
 }

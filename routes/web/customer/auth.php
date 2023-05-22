@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Customer\PageViewController;
-use App\Http\Controllers\Customer\ProductController;
+use App\Http\Controllers\Customer\AuthController;
 use Illuminate\Support\Facades\Route;
 
 

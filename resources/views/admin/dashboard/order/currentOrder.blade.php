@@ -30,20 +30,23 @@
             <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Number</th>
                 <th>Place</th>
                 <th>Order Details</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Md Tamim Hossain</td>
-                <td>Dhaka Bangladesh</td>
-                <td><a class="btn btn-light">Details</a></td>
-                <td><a class="btn btn-info">completed</a></td>
-            </tr>
+            @foreach($orders as $order)
+                <tr>
+                    <td>{{$order->id}}</td>
+                    <td>{{$order->number}}</td>
+                    <td>{{$order->village_name}}</td>
+                    <td><a class="btn btn-light">Details</a></td>
+                    <td><a class="btn btn-info">completed</a></td>
+                </tr>
+            @endforeach
+
             </tbody>
         </table>
     </div>

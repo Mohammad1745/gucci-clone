@@ -205,14 +205,17 @@
 
                 <div class="main">
                     <!-- Another variation with a button -->
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search this blog">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
-                                <i class="fa fa-search"></i>
-                            </button>
+                    <form action="{{route('search')}}" method="post">
+                        @csrf
+                        <div class="input-group">
+                            <input  name="description" type="text" class="form-control" placeholder="Search this blog">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="submit" style="background-color: #f26522; border-color:#f26522 ">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="header_box">
                     <div class="login_menu">
@@ -238,7 +241,7 @@
         </div>
     </div>
     <!-- header section end -->
-
+@yield('view.admin.partials.alert')
 @yield('content')
 <!-- footer section start -->
 <div class="footer_section layout_padding">
