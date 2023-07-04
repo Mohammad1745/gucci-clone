@@ -59,6 +59,7 @@
 
                                 <div class="row">
                                     @foreach($products as $product)
+                                        @if($product->quantity>0)
                                         <div class="col-lg-4 col-sm-4">
                                             <div class="box_main">
 
@@ -79,6 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endif
                                     @endforeach
                                 </div>
 

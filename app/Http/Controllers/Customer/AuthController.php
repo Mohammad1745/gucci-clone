@@ -22,9 +22,8 @@ class AuthController extends Controller
         $this->service = $service;
     }
     public function userProfile(){
-        $categories=Category::all();
-        $subCategories=subCategory::all();
-        return view('customer.view.userProfilePage',compact('categories','subCategories'));
+
+        return redirect()->route('pendingOrder');
     }
     public function login()
     {
@@ -48,6 +47,7 @@ class AuthController extends Controller
     }
     public function processRegistration (RegistrationRequest $request): RedirectResponse
     {
+        dd($request);
         $response = $this->service->processRegistration($request->all());
 
         return $response['success'] ?

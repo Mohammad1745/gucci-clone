@@ -32,8 +32,8 @@
                 <th>ID</th>
                 <th>Number</th>
                 <th>Place</th>
-                <th>Order Details</th>
-                <th>Actions</th>
+                <th>Total Price</th>
+                <th>Order Status</th>
             </tr>
             </thead>
             <tbody>
@@ -42,8 +42,8 @@
                     <td>{{$order->id}}</td>
                     <td>{{$order->number}}</td>
                     <td>{{$order->village_name}}</td>
-                    <td><a class="btn btn-light">Details</a></td>
-                    <td><a class="btn btn-info">completed</a></td>
+                    <td>{{$order->total_price}}$</td>
+                    <td>{{$order->status}}</td>
                 </tr>
             @endforeach
 

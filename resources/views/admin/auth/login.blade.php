@@ -19,7 +19,7 @@
 
                         <form action="{{route('admin.adminProcessLogin')}}" method="post">
                             @csrf
-                            <h3 class="mb-5">Sign in</h3>
+                            <h3 class="mb-5">Admin Login</h3>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="typeEmailX-2">Email</label>

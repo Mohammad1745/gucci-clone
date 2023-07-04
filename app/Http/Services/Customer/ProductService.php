@@ -134,8 +134,36 @@ public function homePage()
     public function pendingOrder(): array
     {
         try{
-            $pending_orders=Order::where('user_id',Auth::id())->where('status','pending')->get();
+            $pending_orders=Order::where('status','pending')->where('user_id',Auth::id())->get();
+
             return $this->responseSuccess('all pending order',['pending_orders'=>$pending_orders]);
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function orderConfirmation($id): array
+    {
+        try{
+
+            $order=Order::find($id);
+
+            if($order->user_id!=Auth::id())
+            {
+                return $this->responseError('You are not authorized');
+            }
+            $order->status = 'complete';
+            $order->save();
+            return $this->responseSuccess('order has been completed');
+        }catch (\Exception $exception){
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function history(): array
+    {
+        try{
+            $completedOrder=Order::where('status','complete')->where('user_id',Auth::id())->get();
+
+            return $this->responseSuccess('User History',['completedOrder'=>$completedOrder]);
         }catch (\Exception $exception){
             return $this->responseError($exception->getMessage());
         }

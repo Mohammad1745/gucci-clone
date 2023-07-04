@@ -18,7 +18,8 @@
 
                                 <div class="row">
                                     @foreach($products as $product)
-                                    <div class="col-lg-4 col-sm-4">
+                                        @if($product->quantity>0)
+                                            <div class="col-lg-4 col-sm-4">
                                         <div class="box_main">
 
                                             <h4 class="shirt_text">{{$product->name}}</h4>
@@ -38,6 +39,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                        @endif
                                     @endforeach
                                 </div>
 

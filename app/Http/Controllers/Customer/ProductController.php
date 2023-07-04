@@ -131,5 +131,21 @@ public function addToCard(Request $request)
             ->get();
         return view('customer.view.searchProduct',compact('categories','subCategories','products','description'));
     }
+    public function orderConfirmation($id)
+    {
 
+        $response=$this->service->orderConfirmation($id);
+
+        return $response['success']?redirect()->route('pendingOrder')->with('message',$response['message'])
+            :redirect()->back()->with('error',$response['message']);
+    }
+    public function history()
+    {
+        $categories=Category::all();
+        $subCategories=Subcategory::all();
+        $response=$this->service->history();
+        $completedOrder=$response['data']['completedOrder'];
+        return $response['success']?view('customer.view.userHistoryPage',compact('categories','subCategories','completedOrder'))->with('message',$response['message'])
+            :redirect()->back()->with('error',$response['message']);
+    }
 }

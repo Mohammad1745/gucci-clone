@@ -79,7 +79,12 @@
                                   </div>
                                   <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
                                       <div class="d-flex flex-row align-items-center mb-1">
+                                          @if($product->quantity>0)
                                           <h4 class="mb-1 me-1">${{$product->price}}</h4>
+                                          @else
+                                              <h4 class="mb-1 me-1 fw-bold " style="text-decoration: crimson;">Out Of Stock</h4>
+                                          @endif
+
                                       </div>
                                       <form action="{{route('deleteProduct',$product->id)}}" method="post">
                                       @csrf

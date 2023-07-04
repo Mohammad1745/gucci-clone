@@ -29,6 +29,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
     <!-- font awesome -->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"/>
     <!--  -->
     <!-- owl stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
@@ -220,8 +221,11 @@
                 <div class="header_box">
                     <div class="login_menu">
                         <ul>
-                            <li><a href="{{route('addToCardPage')}}">
+                            <li>
+                                <a href="{{route('addToCardPage')}}">
+
                                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
                                     <span class="padding_10">Cart</span></a>
                             </li>
                             <li>@if(Auth::user())

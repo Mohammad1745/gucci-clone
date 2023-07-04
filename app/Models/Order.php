@@ -15,6 +15,7 @@ class Order extends Model
         'postal_code',
         'product_name',
         'quantity',
-        'total_price'
+        'total_price',
+        'status'
     ];
 }
