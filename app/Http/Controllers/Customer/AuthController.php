@@ -47,7 +47,7 @@ class AuthController extends Controller
     }
     public function processRegistration (RegistrationRequest $request): RedirectResponse
     {
-        dd($request);
+
         $response = $this->service->processRegistration($request->all());
 
         return $response['success'] ?
