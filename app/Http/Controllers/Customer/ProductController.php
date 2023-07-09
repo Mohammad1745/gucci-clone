@@ -8,6 +8,7 @@ use App\Http\Services\Customer\ProductService;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
+use App\Notifications\addToCartNotification;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
@@ -57,15 +58,38 @@ public function addToCardPage()
     return $response['success']?view('customer.view.addToCardPage',compact('categories','subCategories','carts'))->with('message',$response['message'])
         :redirect()->back()->with('error',$response['message']);
 }
-public function addToCard(Request $request)
-{
-    $response=$this->service->addToCard($request->all());
-    $categories=Category::all();
-    $subCategories=Subcategory::all();
-    $carts=$response['data']['data'];
-    return $response['success']?view('customer.view.addToCardPage',compact('categories','subCategories','carts'))->with('message',$response['message'])
-        :redirect()->back()->with('error',$response['message']);
-}
+    public function addToCard(Request $request)
+    {
+        $response = $this->service->addToCard($request->all());
+        $categories = Category::all();
+        $subCategories = Subcategory::all();
+        $carts = [];
+
+        if ($response['success']) {
+            $carts = $response['data']['data'];
+            $notificationResponse = $this->service->sendAddToCartNotification($request->input('product_name'));
+
+            if ($notificationResponse['success']) {
+                // If the notification was sent successfully, return the view
+                return view('customer.view.addToCardPage', compact('categories', 'subCategories', 'carts'))
+                    ->with('message', $response['message']);
+            } else {
+                dd($notificationResponse['message']);
+                // If there was an error sending the notification, redirect back with an error message
+                return redirect()->back()->with('error', $notificationResponse['message']);
+            }
+        } else {
+            // If there was an error adding to the cart, redirect back with an error message
+            return redirect()->back()->with('error', $response['message']);
+        }
+    }
+    public function markAsRead($id){
+
+            $response=$this->service->markAsRead($id);
+            return $response['success']?redirect()->route('home')
+                :redirect()->back()->with('error',$response['message']);
+    }
+
     public function removeCard($id)
     {
         $response=$this->service->removeCard($id);

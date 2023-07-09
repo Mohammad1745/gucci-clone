@@ -9,8 +9,11 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\ShippingInfo;
 use App\Models\Subcategory;
+use App\Models\User;
+use App\Notifications\addToCartNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class ProductService extends service
 {
@@ -40,22 +43,48 @@ public function homePage()
     }
     public function addToCard($data): array
     {
-        try{
-            $finalPrice=$data['quantity']?$data['quantity']*$data['price']:$data['price'];
+        try {
+            $finalPrice = $data['quantity'] ? $data['quantity'] * $data['price'] : $data['price'];
 
-          Cart::create([
-              'product_name'=>$data['product_name'],
-               'product_id'=>$data['product_id'],
-               'user_id'=>Auth::id(),
-               'quantity'=>$data['quantity'],
-               'price'=>$finalPrice
-           ]);
-            $carts=Cart::where('user_id',Auth::id())->get();
-            return $this->responseSuccess('New Item added to cart',['data'=>$carts]);
-        }catch (\Exception $exception){
+            Cart::create([
+                'product_name' => $data['product_name'],
+                'product_id' => $data['product_id'],
+                'user_id' => Auth::id(),
+                'quantity' => $data['quantity'],
+                'price' => $finalPrice
+            ]);
+
+            $carts = Cart::where('user_id', Auth::id())->get();
+
+            return $this->responseSuccess('New item added to cart', ['data' => $carts]);
+        } catch (\Exception $exception) {
             return $this->responseError($exception->getMessage());
         }
     }
+
+    public function sendAddToCartNotification($productName): array
+    {
+        try {
+            $users = User::all();
+            Notification::send($users, new addToCartNotification($productName));
+            return $this->responseSuccess('Notification sent successfully');
+        } catch (\Exception $exception) {
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function markAsRead($id)
+    {
+
+        try {
+            auth()->user()->notifications->where('id',$id)->markAsRead();
+            return $this->responseSuccess('Mark as read successfully');
+        } catch (\Exception $exception) {
+            return $this->responseError($exception->getMessage());
+        }
+    }
+
+
+
     public function addToCardPage(): array
     {
         try{

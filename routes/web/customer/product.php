@@ -20,5 +20,6 @@ Route::middleware('user')->group(function () {
     Route::get('/history',[ProductController::class ,'history'])->name('history');
     Route::get('/user_dashboard',[ProductController::class ,'user_dashboard'])->name('user_dashboard');
     Route::get('/order/confirmation/{id}',[ProductController::class ,'orderConfirmation'])->name('orderConfirmation');
+    Route::get('/mark-as-read/{id}',[ProductController::class ,'markAsRead'])->name('markAsRead');
 });
 Route::post('/search/product',[ProductController::class ,'search'])->name('search');

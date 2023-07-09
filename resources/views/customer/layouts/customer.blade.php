@@ -114,6 +114,76 @@
         .dropdown-item:hover .sub-menu {
             display: block;
         }
+        .notification-box {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #ffffff; /* White background */
+            border: 1px solid #dddfe2;
+            border-radius: 4px;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .icon i {
+            color: #1877f2;
+        }
+
+        .content {
+            overflow: hidden; /* Prevents text overflow */
+            flex-grow: 1;
+        }
+        .notification-box {
+            display: flex;
+            flex-wrap: wrap; /* Enable wrapping */
+            align-items: center;
+            padding: 10px;
+            background-color: #ffffff; /* White background */
+            border: 1px solid #dddfe2;
+            border-radius: 4px;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .icon i {
+            color: #1877f2;
+        }
+
+        .content {
+            overflow: hidden; /* Prevents text overflow */
+            flex-basis: 100%; /* Take full width */
+        }
+
+        .message {
+            font-weight: bold;
+            margin: 0;
+            white-space: nowrap; /* Ensures single line */
+            text-overflow: ellipsis; /* Displays "..." for overflowing text */
+        }
+
+        .time {
+            font-size: 12px;
+            color: #777;
+            margin: 0;
+        }
+
+        .actions {
+            flex-basis: 100%; /* Take full width */
+            margin-top: 10px; /* Add margin between message and actions */
+        }
+
+        .mark-read {
+            text-decoration: none;
+            color: #1877f2;
+            font-size: 12px;
+        }
+
+
+
 
     </style>
 </head>
@@ -218,14 +288,37 @@
                         </div>
                     </form>
                 </div>
+                @if(Auth::user())
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge rounded-pill badge-notification bg-danger">{{count(Auth::user()->unreadNotifications)}}</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background:transparent;border: none">
+                            @foreach(Auth::user()->unreadNotifications as $notification)
+                                <div class="notification-box">
+                                    <div class="icon">
+                                        <i class="fas fa-bell"></i>
+                                    </div>
+                                    <div class="content">
+                                        <p class="message">You have added a {{$notification->data['name']}} to cart</p>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="{{route('markAsRead',$notification->id)}}" class="mark-read">Mark as Read</a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
                 <div class="header_box">
+
                     <div class="login_menu">
                         <ul>
                             <li>
                                 <a href="{{route('addToCardPage')}}">
 
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
                                     <span class="padding_10">Cart</span></a>
                             </li>
                             <li>@if(Auth::user())
