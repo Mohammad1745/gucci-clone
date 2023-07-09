@@ -19,7 +19,11 @@ class CategoryController extends Controller
     {
         $this->service=$service;
     }
-    public function getAllCategory(): View|\Illuminate\Foundation\Application|Factory|RedirectResponse|Application
+
+    /**
+     * @return Application|Factory|View|\Illuminate\Foundation\Application|RedirectResponse
+     */
+    public function getAllCategory()
     {
         $response=$this->service->getAllCategory();
         $dataResponse=$response['data'];

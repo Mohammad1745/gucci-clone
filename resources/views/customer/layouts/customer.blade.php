@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Eflyer</title>
+    <title>AstralAttire</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -182,9 +182,6 @@
             font-size: 12px;
         }
 
-
-
-
     </style>
 </head>
 <body>
@@ -198,10 +195,10 @@
                     <div class="custom_menu">
                         <ul>
                             <li><a href="{{route('home')}}">Home</a></li>
-                            <li><a href="{{route('bestSells')}}">Best Sellers</a></li>
+                            <li><a href="">Best Sellers</a></li>
                             <li><a href="{{route('newRelease')}}">New Releases</a></li>
                             <li><a href="#">Today's Deals</a></li>
-                            <li><a href="{{route('customerService')}}">Customer Service</a></li>
+                            <li><a href="">Customer Service</a></li>
                         </ul>
                     </div>
                 </div>
@@ -343,7 +340,7 @@
 <!-- footer section start -->
 <div class="footer_section layout_padding">
     <div class="container">
-        <div class="footer_logo"><a href="index.html"><img src="/img/customer/footer-logo.png"></a></div>
+        <div class="footer_logo"><a><img src="/img/customer/logo.png"></a></div>
         <div class="input_bt">
             <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
             <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
