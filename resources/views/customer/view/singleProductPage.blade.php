@@ -36,7 +36,7 @@
                             <label for="product Quantity">Quantity</label>
                             <input name="quantity"type="number" min="1" max="{{$product->quantity}}" placeholder="1">
                             <br>
-                            <button type="submit" class="btn btn-warning">Add To Card</button>
+                            <button type="submit" class="btn btn-warning">Add To Cart</button>
                         </form>
                     </div>
                 </div>

@@ -73,7 +73,7 @@
                                                         <input name="price" type="hidden" value="{{$product->price}}">
                                                         <input name="quantity"type="hidden" value="1">
                                                         <br>
-                                                        <button type="submit" class="btn btn-warning">Add To Card</button>
+                                                        <button type="submit" class="btn btn-warning">Add To Cart</button>
                                                     </form>
                                                     <a  href="{{route('singleProductPage',[$product->id,$product->slug])}}">Details</a>
                                                 </div>

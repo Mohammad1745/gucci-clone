@@ -211,7 +211,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="logo"><a href="index.html"><img src="/img/customer/logo.png"></a></div>
+                    <div class="logo"><a href="{{route('home')}}"><img src="/img/customer/logo.png"></a></div>
                 </div>
             </div>
         </div>
