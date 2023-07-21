@@ -10,12 +10,9 @@ use App\Models\Product;
 use App\Models\Subcategory;
 use App\Notifications\addToCartNotification;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
-
 class ProductController extends Controller
 {
-    //
     private ProductService $service;
     function __construct(ProductService $service)
     {
@@ -125,6 +122,11 @@ public function addToCardPage()
         $response=$this->service->placeOrder();
         return $response['success']?redirect()->route('pendingOrder')->with('message',$response['message'])
             :redirect()->back()->with('error',$response['message']);
+    }
+    public function cancelOrder()
+    {
+
+        return redirect()->route('addToCardPage')->with('error','Order Cancel');
     }
     public function pendingOrder()
     {

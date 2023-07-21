@@ -3,6 +3,7 @@
 namespace App\Http\Services\auth;
 
 use App\Http\Services\Service;
+use App\Jobs\SendEmailJob;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -29,14 +30,37 @@ class AuthService extends Service
     public function processRegistration (array $data): array
     {
         try {
+            $code=randomNumber(4);
             $formattedData = [
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
-                'number'=>$data['number']
+                'number'=>$data['number'],
+                'verification_code'=>$code
             ];
             $user = User::create($formattedData);
-            return $this->responseSuccess('Registration successfully ');
+            $sendEmailJob = new SendEmailJob($data['email'],$data['name'],$code);
+            dispatch($sendEmailJob);
+            return $this->responseSuccess('Registration successfully please check your mail for authentication code');
+        }
+        catch (\Exception $exception) {
+            return $this->responseError($exception->getMessage());
+        }
+    }
+    public function verification(array $data): array
+    {
+        try {
+            $user = User::where('email', $data['email'])->where('verification_code', $data['verification_code'])->first();
+            if (!$user) {
+                return $this->responseError("Invalid Code");
+            }
+            $formattedData = [
+                'verification_code' => null,
+                'email_verified' => true
+            ];
+            User::where('id', $user->id)->update($formattedData);
+
+            return $this->responseSuccess("Verification Successful!");
         }
         catch (\Exception $exception) {
             return $this->responseError($exception->getMessage());

@@ -64,17 +64,15 @@
             </div>
             <div class="row" style="justify-content: right">
                 <div class=""style="padding: 5px">
-                    <form action=""method="post">
-                        @csrf
 
-                        <button onclick="confirm('Are you sure you want to cancel?')" type="submit" class="btn btn-danger">Cancel Order</button>
-                    </form>
+
+                        <a href="{{route('cancelOrder')}}" onclick="confirm('Are you sure you want to cancel?')"  class="btn btn-danger">Cancel Order</a>
+
                 </div>
                 <div style="padding: 5px">
-                    <form action="{{route('placeOrder')}}"method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-warning">Place Order</button>
-                    </form>
+
+                        <a href="{{route('paymentPage')}}" class="btn btn-warning" >Place Order</a>
+
                 </div>
             </div>
         </div>

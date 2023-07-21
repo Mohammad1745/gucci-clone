@@ -36,7 +36,7 @@
                             <input name="postal_code" type="text" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="postal_code">Postal Code</label>
+                            <label for="postal_code">Message</label>
                             <textarea name="message" type="text" class="form-control" placeholder="Message"></textarea>
                         </div>
                         <button type="submit" class="btn btn-secondary">Next</button>

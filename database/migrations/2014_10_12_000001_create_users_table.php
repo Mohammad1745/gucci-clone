@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('password');
             $table->string('number');
             $table->string('role')->default('customer');//or, admin
+            $table->string('verification_code')->nullable();
+            $table->boolean('email_verified')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
